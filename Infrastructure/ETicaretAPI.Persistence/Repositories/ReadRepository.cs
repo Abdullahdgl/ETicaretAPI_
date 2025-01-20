@@ -40,13 +40,6 @@ namespace ETicaretAPI.Persistence.Repositories
 		}
 		public async Task<T> GetSingleAsync(Expression<Func<T, bool>> method, bool tracking = true)
 
-//=> await Table.FirstOrDefaultAsync(method); Tracking kontrolü yapıldığı için bunun yerine 
-		{
-			var query = Table.AsQueryable();
-			if (!tracking)
-				query.AsNoTracking();
-			return await query.FirstOrDefaultAsync(method);
-		}
 
 		public async Task<T> GetByIdAsync(string id, bool tracking = true)
 		//=> await Table.FirstOrDefaultAsync(data => data.Id == Guid.Parse(id));
