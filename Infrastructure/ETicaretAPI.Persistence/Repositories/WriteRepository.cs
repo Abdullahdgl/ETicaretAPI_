@@ -39,7 +39,7 @@ namespace ETicaretAPI.Persistence.Repositories
 		{
 			EntityEntry<T> entityEntry = Table.Remove(model);
 			return entityEntry.State == EntityState.Deleted;
-
+			 
 		}
 		public bool RemoveRange(List<T> datas)
 		{

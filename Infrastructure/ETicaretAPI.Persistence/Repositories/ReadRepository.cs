@@ -34,7 +34,7 @@ namespace ETicaretAPI.Persistence.Repositories
 		{
 			var query = Table.Where(method);
 				if(!tracking)
-				query = query.AsNoTracking();
+				query = query.AsNoTracking(); 
 				return query;
 		}
 		public async Task<T> GetSingleAsync(Expression<Func<T, bool>> method, bool tracking = true)
