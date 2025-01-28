@@ -7,12 +7,18 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddPersistenceServices();
-//builder.Services.AddDbContext<ETicaretAPIDbContext>(options => options.UseNpgsql("Server=localhost;Port=5433;Database=ETicaretAPIDb;User Id=admin;Password=password;"));
+builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
+policy.WithOrigins("http://localhost:4200/", "https://localhost:4200/").AllowAnyHeader().AllowAnyMethod()
+
+));
 
 
 // Add services to the container.
 
+
+
 builder.Services.AddControllers();
+
 #region addSingleton ile örneði
 //builder.Services.AddSingleton<IProductService, ProductService>();
 //builder.Services.AddSingleton<ICustomerService, CustomerService>();
@@ -30,6 +36,7 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,6 +45,7 @@ if (app.Environment.IsDevelopment())
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
+app.UseCors();
 
 app.UseHttpsRedirection();
 

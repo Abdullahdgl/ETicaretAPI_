@@ -19,7 +19,7 @@ namespace ETicaretAPI.Persistence
 		//static olmasının nedeni biz bunun içerisinde extantion fonksiyon tanımlayacağız.
 		public static void AddPersistenceServices(this IServiceCollection services)
 		{
-			#region Singleton ile örneği
+			#region Singleton
 			//services.AddDbContext<ETicaretAPIDbContext>(options => options.UseNpgsql(Configuration.ConnectionString), ServiceLifetime.Singleton);
 
 			//services.AddSingleton<ICustomerReadRepository, CustomerReadRepository>();
@@ -41,6 +41,7 @@ namespace ETicaretAPI.Persistence
 
 			services.AddScoped<IProductReadRepository, ProductReadRepository>();
 			services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+
 
 		}
 	}

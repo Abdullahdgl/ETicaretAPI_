@@ -9,17 +9,17 @@ namespace ETicaretAPI.API.Controllers
 	public class CustomersController : ControllerBase
 	{
 
-		private readonly ICustomerService _customerService;
+		//private readonly ICustomerService _customerService;
 
-		public CustomersController(ICustomerService customerService)
-		{
-			_customerService = customerService;
-		}
-		[HttpGet]
-		public IActionResult GetCustomers()
-		{
-			var customers = _customerService.GetCustomers();
-			return Ok(customers);
-		}
+		//public CustomersController(ICustomerService customerService)
+		//{
+		//	_customerService = customerService;
+		//}
+		//[HttpGet]
+		//public IActionResult GetCustomers()
+		//{
+		//	var customers = _customerService.GetCustomers();
+		//	return Ok(customers);
+		//}
 	}
 }
