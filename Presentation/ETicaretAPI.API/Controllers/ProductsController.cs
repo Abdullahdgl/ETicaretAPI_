@@ -37,11 +37,20 @@ namespace ETicaretAPI.API.Controllers
 
 		public async Task<IActionResult>Get()
 		{
-			return (Ok(_productReadRepository.GetAll(false)));
+			return Ok(_productReadRepository.GetAll(false).Select(p => new
+			{
+				p.Id,
+				p.Name,
+				p.Stock,
+				p.Price,
+				p.CreatedDate,
+				p.UpdatedDate,
+
+			}));
 		}
 
 		// birde parametreli bir get metodu ile çağıralım!
-		[HttpGet("{id}")]
+		[HttpGet("{id}")] 
 		public async Task<IActionResult> Get(string id)
 		{
 			return Ok(await _productReadRepository.GetByIdAsync(id, false));
@@ -50,9 +59,7 @@ namespace ETicaretAPI.API.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Post(VM_Create_Product model)
 		{
-			if (ModelState.IsValid)
-			{
-			}
+		
 			await _productWriteRepository.AddAsync(new()
 			{
 			Name = model.Name,
