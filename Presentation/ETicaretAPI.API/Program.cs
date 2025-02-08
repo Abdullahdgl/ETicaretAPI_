@@ -1,7 +1,10 @@
 using ETicaretAPI.Application.Abstractions;
+using ETicaretAPI.Application.Validators.Products;
+using ETicaretAPI.Infrastructure.Filters;
 using ETicaretAPI.Persistence;
 using ETicaretAPI.Persistence.Concretes;
 using ETicaretAPI.Persistence.Contexts;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +20,11 @@ policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHe
 
 
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>())
+	.AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>())
+	.ConfigureApiBehaviorOptions(options=>options.SuppressModelStateInvalidFilter=true);
+
+
 
 #region addSingleton ile örneði
 //builder.Services.AddSingleton<IProductService, ProductService>();

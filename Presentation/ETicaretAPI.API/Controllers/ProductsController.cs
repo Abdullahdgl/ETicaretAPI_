@@ -1,8 +1,9 @@
 ﻿using ETicaretAP.Domain.Entites;
-using ETicaretAP.Domain.ViewModels.Products;
+
 using ETicaretAPI.Application.Abstractions;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.RepositorieS;
+using ETicaretAPI.Application.ViewModels.Products;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -49,6 +50,9 @@ namespace ETicaretAPI.API.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Post(VM_Create_Product model)
 		{
+			if (ModelState.IsValid)
+			{
+			}
 			await _productWriteRepository.AddAsync(new()
 			{
 			Name = model.Name,
